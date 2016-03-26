@@ -1,0 +1,15 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - docker info
+    - docker version
+
+  override:
+    - docker run -e CGO_ENABLED=0 -v $PWD:/go/src -w /go/src golang:1.6-alpine go build -o ./rkt-gauth -a -tags netgo --ldflags "-extldflags '-static'" ./bin/rkt-gauth.go
+
+test:
+  override:
+    - cp rkt-gauth $CIRCLE_ARTIFACTS/rkt-gauth

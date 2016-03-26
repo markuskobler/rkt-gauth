@@ -1,0 +1,8 @@
+package: .
+import:
+- package: golang.org/x/oauth2
+  subpackages:
+  - google
+- package: golang.org/x/net
+  subpackages:
+  - context
