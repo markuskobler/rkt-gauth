@@ -9,7 +9,8 @@ dependencies:
 
   override:
     - docker run -e CGO_ENABLED=0 -v $PWD:/go/src -w /go/src golang:1.6-alpine go build -o ./rkt-gauth -a -tags netgo --ldflags "-extldflags '-static'" ./bin/rkt-gauth.go
+    - XZ_OPT=-9e tar cJf rkt-gauth.tar.xz rkt-gauth
 
 test:
   override:
-    - cp rkt-gauth $CIRCLE_ARTIFACTS/rkt-gauth
+    - cp rkt-gauth* $CIRCLE_ARTIFACTS/
